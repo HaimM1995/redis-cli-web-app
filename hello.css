@@ -1,0 +1,19 @@
+body {
+    background-color: black;
+    color: white
+}
+
+input {
+    border: none;
+    background: none;
+    color: white
+}
+
+input:disabled {
+    background: none;
+}
+
+input:focus {
+    outline: none !important;
+    background: none;
+}
