@@ -6,33 +6,14 @@ function setItem(key, value) {
     localStorage.setItem(key, value);
 }
 
-function checkExistance(keys) {
-    var i = 1;
-    var counterOfExist = 0;
-
-    while (i < keys.length) {
-        if (localStorage.getItem(keys[i]) !== null) {
-            counterOfExist++;
-        }
-        i++;
-    }
-    return counterOfExist;
+function doesKeyExist(keys) {
+    return keys.filter(key => localStorage.getItem(key) !== null).length;
 }
 
-function deleteItems(keys) {
-    var i = 1;
-    var counterOfExist = 0;
-
-    while (i < keys.length) {
-        if (localStorage.getItem(keys[i]) !== null) {
-            localStorage.removeItem(keys[i]);
-            counterOfExist++;
-        }
-        i++;
-    }
-    return counterOfExist;
+function removeItem(key) {
+    localStorage.removeItem(key);
 }
 
-function getKeys() {
-    return Object.entries(localStorage);
+function getKeys(regexp) {
+    return Object.keys(localStorage).filter(key => regexp.test(key));
 }

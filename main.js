@@ -1,32 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     printNewCommandLine();
 
-    // Execute a function when the user releases a key on the keyboard
+    // Process the input when the user presses Enter 
     document.addEventListener("keyup", function (event) {
-        // Number 13 is the "Enter" key on the keyboard
-        if (event.keyCode === 13) {
-            var getCommand = document.getElementById(inputElementId - 1).value;
-            command = getCommand.split(" ");
-            switch (command[0].toUpperCase()) {
+        if (event.key === "Enter") {
+            let input = document.getElementById(inputElementId - 1).value.trim()
+                .split(" ").filter(str => str.length > 0);
+            let command = input[0].toUpperCase();
+            let params = input.slice(1);
+
+            switch (command) {
                 case "GET":
-                    executeGet(command);
+                    executeGet(params);
                     break;
                 case "SET":
-                    executeSet(command);
+                    executeSet(params);
                     break;
                 case "DEL":
-                    executeDel(command);
+                    executeDel(params);
                     break;
                 case "KEYS":
+                    executeKeys(params);
                     break;
                 case "EXISTS":
-                    executeExists(command);
+                    executeExists(params);
                     break;
                 case "EXPIRE":
+                    executeExpire(params);
                     break;
                 default:
-                    printOutputLine("invalid command");
+                    printOutputLine("Command doesn't exist. Supported commands are: GET, SET, DEL, EXISTS, KEYS, EXPIRE.");
             }
 
             printNewCommandLine();
