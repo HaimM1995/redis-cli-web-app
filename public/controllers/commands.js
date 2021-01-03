@@ -28,7 +28,7 @@ function executeExists(params) {
         return;
     }
 
-    printOutputLine(`(integer) ${doesKeyExist(params)}`);
+    printOutputLine(doesKeyExist(params));
 }
 
 function executeDel(params) {
@@ -37,7 +37,7 @@ function executeDel(params) {
         return;
     }
 
-    printOutputLine(`(integer) ${deleteItems(params)}`);
+    printOutputLine(deleteItems(params));
 }
 
 function deleteItems(keys) {
@@ -67,7 +67,7 @@ function executeExpire(params) {
     }
     let key = params[0], seconds = params[1] * 1000;
 
-    if (doesKeyExist(key) === 0) {
+    if (getItem(key) === null) {
         printOutputLine(0);
         return;
     }

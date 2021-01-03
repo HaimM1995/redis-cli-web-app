@@ -1,0 +1,23 @@
+{
+  "name": "redis-cli-web-app",
+  "version": "1.0.0",
+  "description": "In browser key value store framework(on top of the natvie browser-cache)",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaimM1995/redis-cli-web-app.git"
+  },
+  "author": "Haim M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaimM1995/redis-cli-web-app/issues"
+  },
+  "homepage": "https://github.com/HaimM1995/redis-cli-web-app#readme"
+}

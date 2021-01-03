@@ -37,6 +37,7 @@ function printNewCommandLine() {
 }
 
 function printOutputLine(result) {
+    result = Number.isInteger(result) ? `(integer) ${result}` : result;
     let rowWrapper = document.createElement("DIV");
     rowWrapper.appendChild(document.createTextNode(nvl(result, "(nil)")));
     container.appendChild(rowWrapper);
@@ -45,7 +46,7 @@ function printOutputLine(result) {
 function printOutputList(result) {
     if (result.length > 0) {
         let rowWrapper = document.createElement("DIV");
-        for (let i = 0; i < result.length - 1; i++) {
+        for (var i = 0; i < result.length - 1; i++) {
             outputText = document.createTextNode(`${i + 1}) ${result[i]}`);
             rowWrapper.appendChild(outputText);
             rowWrapper.appendChild(document.createElement('BR'));
