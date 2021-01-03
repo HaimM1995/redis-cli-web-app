@@ -2,6 +2,13 @@ var historyCommandIndex;
 var historyCommand = [];
 
 document.addEventListener("DOMContentLoaded", function () {
+    let welcomePhase = [];
+    welcomePhase.push("Welcome to redis cli web app");
+    welcomePhase.push("The Supported commands are: HELP, GET, SET, DEL, EXISTS, KEYS, EXPIRE");
+    welcomePhase.push("Feel free to use the arrow keys(UP & DOWN) for history commands");
+    welcomePhase.push("Use HELP command to get information about the commands");
+
+    printOutputList(welcomePhase);
     printNewCommandLine();
 
     historyCommandIndex = currentInputIndex;
@@ -44,35 +51,42 @@ function handleArrows(arrow) {
 
 function processInput() {
 
-    // Save command for history usage
-    historyCommand.push(currentInputElement.value);
+    // If the user clicked enter on empty row
+    if (currentInputElement.value !== "") {
 
-    let input = currentInputElement.value.trim().split(" ").filter(str => str.length > 0);
-    let command = input[0].toUpperCase();
-    let params = input.slice(1);
+        // Save command for history usage
+        historyCommand.push(currentInputElement.value);
 
-    switch (command) {
-        case "GET":
-            executeGet(params);
-            break;
-        case "SET":
-            executeSet(params);
-            break;
-        case "DEL":
-            executeDel(params);
-            break;
-        case "KEYS":
-            executeKeys(params);
-            break;
-        case "EXISTS":
-            executeExists(params);
-            break;
-        case "EXPIRE":
-            executeExpire(params);
-            break;
-        default:
-            printOutputLine("Command doesn't exist. The Supported commands are: GET, SET, DEL, EXISTS, KEYS, EXPIRE.");
+        let input = currentInputElement.value.trim().split(" ").filter(str => str.length > 0);
+        let command = input[0].toUpperCase();
+        let params = input.slice(1);
+
+        switch (command) {
+            case "GET":
+                executeGet(params);
+                break;
+            case "SET":
+                executeSet(params);
+                break;
+            case "DEL":
+                executeDel(params);
+                break;
+            case "KEYS":
+                executeKeys(params);
+                break;
+            case "EXISTS":
+                executeExists(params);
+                break;
+            case "EXPIRE":
+                executeExpire(params);
+                break;
+            case "HELP":
+                executeHelp();
+                break;
+            default:
+                printOutputLine("Command doesn't exist. The Supported commands are: GET, SET, DEL, EXISTS, KEYS, EXPIRE.");
+        }
+
+        printNewCommandLine();
     }
-
-    printNewCommandLine();
 }
