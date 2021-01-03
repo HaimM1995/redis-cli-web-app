@@ -1,4 +1,5 @@
 var tasks = {};
+var helpPhase = [];
 
 function executeGet(params) {
     if (params.length !== 1) {
@@ -81,6 +82,20 @@ function executeExpire(params) {
     }
 
     printOutputLine(1);
+}
+
+function executeHelp() {
+    // Initiate only once
+    if (helpPhase.length === 0) {
+        helpPhase.push("GET key");
+        helpPhase.push("SET key value");
+        helpPhase.push("DEL key [key ...]");
+        helpPhase.push("EXISTS key [key ...]");
+        helpPhase.push("KEYS regexp");
+        helpPhase.push("EXPIRE key seconds");
+    }
+
+    printOutputList(helpPhase);
 }
 
 function removeTimeoutTask(key) {
