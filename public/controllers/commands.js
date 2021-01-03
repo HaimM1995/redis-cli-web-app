@@ -91,7 +91,7 @@ function executeHelp() {
         helpPhase.push("SET key value");
         helpPhase.push("DEL key [key ...]");
         helpPhase.push("EXISTS key [key ...]");
-        helpPhase.push("KEYS regexp(pattern)");
+        helpPhase.push("KEYS regexp");
         helpPhase.push("EXPIRE key seconds");
     }
 
