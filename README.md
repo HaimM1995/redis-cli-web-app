@@ -1,7 +1,7 @@
 # redis-cli-web-app
 
 ### Description:
-This app imitates the redis cli linux application.
+This app imitates the Redis CLI Linux application.
 
 ### Installation:
 1. Clone the project.
