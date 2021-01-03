@@ -1,5 +1,6 @@
 const invalidParameterInput = "Bad parameters number";
-var inputElementId = 0;
+var currentInputElement;
+var currentInputIndex = -1;
 var container;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -15,25 +16,24 @@ function printNewCommandLine() {
     row.appendChild(linePrefix);
 
     // User input
-    let input = document.createElement("INPUT");
-    input.setAttribute("type", "text");
-    input.id = inputElementId;
-    row.appendChild(input);
+    currentInputElement = document.createElement("INPUT");
+    currentInputElement.setAttribute("type", "text");
+    currentInputElement.id = historyCommandIndex = ++currentInputIndex;
+    row.appendChild(currentInputElement);
 
     let rowWrapper = document.createElement("DIV");
     rowWrapper.appendChild(row);
     container.appendChild(rowWrapper);
 
     // Set the focus on the current input
-    document.getElementById(inputElementId).focus();
+    document.getElementById(currentInputIndex).focus();
 
     // Disable the former input 
-    lastInput = document.getElementById(inputElementId - 1);
-
-    if (lastInput)
+    // For the first input there is no previous input to disable
+    if (currentInputIndex > 0) {
+        lastInput = document.getElementById(currentInputIndex - 1);
         lastInput.disabled = true;
-
-    inputElementId++;
+    }
 }
 
 function printOutputLine(result) {
