@@ -4,6 +4,7 @@ body {
 }
 
 input {
+    font-family: monospace;
     border: none;
     background: none;
     color: white
@@ -16,4 +17,8 @@ input:disabled {
 input:focus {
     outline: none !important;
     background: none;
+}
+
+#container {
+    font-family: monospace;
 }
