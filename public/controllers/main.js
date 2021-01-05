@@ -2,16 +2,9 @@ var historyCommandIndex;
 var historyCommand = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-    let welcomePhase = [];
-    welcomePhase.push("Welcome to redis cli web app");
-    welcomePhase.push("The Supported commands are: HELP, GET, SET, DEL, EXISTS, KEYS, EXPIRE");
-    welcomePhase.push("Feel free to use the arrow keys(UP & DOWN) for history commands");
-    welcomePhase.push("Use HELP command to get information about the commands");
 
-    printOutputList(welcomePhase);
+    printWelcome();
     printNewCommandLine();
-
-    historyCommandIndex = currentInputIndex;
 
     // Process the input when the user presses Enter 
     document.addEventListener("keyup", function (event) {
@@ -31,6 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function printWelcome() {
+    let welcomePhase = [];
+    welcomePhase.push("Welcome to redis cli web app");
+    welcomePhase.push("The Supported commands are: HELP, GET, SET, DEL, EXISTS, KEYS, EXPIRE");
+    welcomePhase.push("Feel free to use the arrow keys(UP & DOWN) for history commands");
+    welcomePhase.push("Use HELP command to get information about the commands");
+    printOutputList(welcomePhase);
+}
+
 function handleArrows(arrow) {
     let indicator = (arrow === "up") ? -1 : 1;
     let tmpWantedCommandIndex = historyCommandIndex + indicator;
@@ -40,13 +42,12 @@ function handleArrows(arrow) {
         historyCommandIndex = tmpWantedCommandIndex;
         currentInputElement.value = "";
     }
-    // Make sure the wanted command is between boundries
+    // Make sure the wanted command is between boundaries
     else if (tmpWantedCommandIndex >= 0 &&
         (tmpWantedCommandIndex < currentInputIndex)) {
         historyCommandIndex = tmpWantedCommandIndex;
         currentInputElement.value = historyCommand[historyCommandIndex];
     }
-
 }
 
 function processInput() {
