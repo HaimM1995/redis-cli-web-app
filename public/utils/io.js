@@ -26,7 +26,7 @@ function printNewCommandLine() {
     container.appendChild(rowWrapper);
 
     // Set the focus on the current input
-    document.getElementById(currentInputIndex).focus();
+    currentInputElement.focus();
 
     // Disable the former input 
     // For the first input there is no previous input to disable
