@@ -7,7 +7,7 @@ function setItem(key, value) {
 }
 
 function doesKeyExist(keys) {
-    return keys.filter(key => localStorage.getItem(key) !== null).length;
+    return keys.filter(key => getItem(key) !== null).length;
 }
 
 function removeItem(key) {

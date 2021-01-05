@@ -46,15 +46,15 @@ function printOutputLine(result) {
 function printOutputList(result) {
     if (result.length > 0) {
         let rowWrapper = document.createElement("DIV");
-        for (var i = 0; i < result.length - 1; i++) {
+        for (var i = 0; i < result.length; i++) {
             outputText = document.createTextNode(`${i + 1}) ${result[i]}`);
             rowWrapper.appendChild(outputText);
-            rowWrapper.appendChild(document.createElement('BR'));
+
+            // For the last element don't put new line at the end.
+            if (i !== result.length - 1)
+                rowWrapper.appendChild(document.createElement('BR'));
         }
 
-        // For the last element don't put new line at the end.
-        outputText = document.createTextNode(`${i + 1}) ${result[result.length - 1]}`);
-        rowWrapper.appendChild(outputText);
         container.appendChild(rowWrapper);
     } else {
         printOutputLine(null);

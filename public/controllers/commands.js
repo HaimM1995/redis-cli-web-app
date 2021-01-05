@@ -42,7 +42,7 @@ function executeDel(params) {
 }
 
 function deleteItems(keys) {
-    return keys.filter(key => localStorage.getItem(key) !== null)
+    return keys.filter(key => getItem(key) !== null)
         .map(key => deleteItem(key)).length;
 }
 
@@ -77,7 +77,7 @@ function executeExpire(params) {
         deleteItem(key);
     } else {
         removeTimeoutTask(key);
-        let timeoutId = setTimeout(deleteItem.bind(null, key), seconds);
+        let timeoutId = setTimeout(removeItem.bind(null, key), seconds);
         tasks[params[0]] = timeoutId;
     }
 
